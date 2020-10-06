@@ -1,0 +1,19 @@
+version: "1.0"
+services:
+    postgres:
+        image: postgres:9.6
+        ports:
+            - "5432:5432"
+        networks:
+            - backend
+        deploy:
+
+    recipeasy:
+        image: ubuntu:18.04
+        env_file: .env
+        ports:
+            9000:9000
+        networks:
+            - frontend
+        depends_on: postgres
+        stop_grace_period: 1m30s
